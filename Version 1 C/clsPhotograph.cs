@@ -6,7 +6,7 @@ namespace Version_1_C
     [Serializable()]
     public class clsPhotograph : clsWork
     {
-        private float theWidth;
+        private float _Width;
         private float theHeight;
         private string theType;
 
