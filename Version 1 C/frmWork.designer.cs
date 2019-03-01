@@ -40,14 +40,14 @@ namespace Version_1_C
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(97, 81);
+            this.txtValue.Location = new System.Drawing.Point(94, 77);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(96, 20);
             this.txtValue.TabIndex = 3;
             // 
             // Label2
             // 
-            this.Label2.Location = new System.Drawing.Point(9, 84);
+            this.Label2.Location = new System.Drawing.Point(6, 80);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(80, 16);
             this.Label2.TabIndex = 46;
@@ -55,14 +55,14 @@ namespace Version_1_C
             // 
             // txtCreation
             // 
-            this.txtCreation.Location = new System.Drawing.Point(97, 49);
+            this.txtCreation.Location = new System.Drawing.Point(94, 45);
             this.txtCreation.Name = "txtCreation";
             this.txtCreation.Size = new System.Drawing.Size(96, 20);
             this.txtCreation.TabIndex = 2;
             // 
             // Label1
             // 
-            this.Label1.Location = new System.Drawing.Point(9, 52);
+            this.Label1.Location = new System.Drawing.Point(6, 48);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(80, 16);
             this.Label1.TabIndex = 44;
@@ -70,14 +70,14 @@ namespace Version_1_C
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(97, 17);
+            this.txtName.Location = new System.Drawing.Point(94, 13);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(96, 20);
             this.txtName.TabIndex = 1;
             // 
             // Label3
             // 
-            this.Label3.Location = new System.Drawing.Point(9, 20);
+            this.Label3.Location = new System.Drawing.Point(6, 16);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(80, 16);
             this.Label3.TabIndex = 40;

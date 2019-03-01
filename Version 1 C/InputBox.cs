@@ -8,23 +8,23 @@ using System.Windows.Forms;
 
 namespace Version_1_C
 {
-    public partial class InputBox : Form
+    public partial class frmInputBox : Form
     {
-        private string answer;
+        private string _Answer;
 
-        public InputBox(string question)
+        public frmInputBox(string prQuestion)
         {
             InitializeComponent();
-            lblQuestion.Text = question;
+            lblQuestion.Text = prQuestion;
             lblError.Text = "";
             txtAnswer.Focus();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void btnOK_Click(object prSender, EventArgs prE)
         {
             if (txtAnswer.Text.Length > 0 && txtAnswer.Text.Length < 2)
             {
-                answer = txtAnswer.Text;
+                _Answer = txtAnswer.Text;
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -34,15 +34,15 @@ namespace Version_1_C
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object prSender, EventArgs prE)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        public string getAnswer()
+        public string GetAnswer()
         {
-            return answer;
+            return _Answer;
         }
     }
 }

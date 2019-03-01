@@ -5,19 +5,19 @@ namespace Version_1_C
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private System.ComponentModel.IContainer _Components = null;
 
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        /// <param name="prDisposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool prDisposing)
         {
-            if (disposing && (components != null))
+            if (prDisposing && (_Components != null))
             {
-                components.Dispose();
+                _Components.Dispose();
             }
-            base.Dispose(disposing);
+            base.Dispose(prDisposing);
         }
 
         #region Windows Form Designer generated code

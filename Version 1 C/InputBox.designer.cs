@@ -1,6 +1,6 @@
 namespace Version_1_C
 {
-    partial class InputBox
+    partial class frmInputBox
     {
         /// <summary>
         /// Required designer variable.

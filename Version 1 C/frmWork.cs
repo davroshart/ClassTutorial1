@@ -10,6 +10,7 @@ namespace Version_1_C
 {
     public partial class frmWork : Form
     {
+        private clsWork _Work;
 
         public frmWork()
         {
@@ -48,6 +49,10 @@ namespace Version_1_C
         {
             return true;
         }
-    
+
+        private void lboType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //reface of work form type??
+        }
     }
 }
