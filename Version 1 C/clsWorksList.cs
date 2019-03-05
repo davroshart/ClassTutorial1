@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Version_1_C
 {
     [Serializable()] 
-    public class clsWorksList : ArrayList
+    public class clsWorksList : List<clsWork>
     {
         private static clsNameComparer _NameComparer = new clsNameComparer();
         private static clsDateComparer _DateComparer = new clsDateComparer();
@@ -13,9 +12,9 @@ namespace Version_1_C
 
         public byte SortOrder { get => _SortOrder; set => _SortOrder = value; }
 
-        public void AddWork()
+        public void AddWork(char prWorkType)
         {
-            clsWork lcWork = clsWork.NewWork();
+            clsWork lcWork = clsWork.NewWork(prWorkType);
             if (lcWork != null)
             {
                 Add(lcWork);
@@ -25,24 +24,22 @@ namespace Version_1_C
         public void DeleteWork(int prIndex)
         {
             if (prIndex >= 0 && prIndex < this.Count)
-            {
-                if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    this.RemoveAt(prIndex);
-                }
+            {                
+                this.RemoveAt(prIndex);                
             }
         }
         
-        public void EditWork(int prIndex)
+        public string EditWork(int prIndex)
         {
             if (prIndex >= 0 && prIndex < this.Count)
             {
                 clsWork lcWork = (clsWork)this[prIndex];
                 lcWork.EditDetails();
+                return "done";
             }
             else
             {
-                MessageBox.Show("Sorry no work selected #" + Convert.ToString(prIndex));
+                return "badindex";
             }
         }
 
@@ -51,7 +48,7 @@ namespace Version_1_C
             decimal lcTotal = 0;
             foreach (clsWork lcWork in this)
             {
-                lcTotal += lcWork.GetValue();
+                lcTotal += lcWork.Value;
             }
             return lcTotal;
         }

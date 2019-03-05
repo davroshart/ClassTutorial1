@@ -44,6 +44,7 @@ namespace Version_1_C
             this.Label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
+            this.lboWorkType = new System.Windows.Forms.ListBox();
             this.optSort.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +93,7 @@ namespace Version_1_C
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(171, 257);
+            this.btnClose.Location = new System.Drawing.Point(169, 310);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(64, 32);
             this.btnClose.TabIndex = 24;
@@ -101,7 +102,7 @@ namespace Version_1_C
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(91, 257);
+            this.btnDelete.Location = new System.Drawing.Point(89, 310);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(64, 32);
             this.btnDelete.TabIndex = 23;
@@ -110,7 +111,7 @@ namespace Version_1_C
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(11, 257);
+            this.btnAdd.Location = new System.Drawing.Point(9, 310);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(64, 32);
             this.btnAdd.TabIndex = 22;
@@ -178,11 +179,24 @@ namespace Version_1_C
             this.Label1.TabIndex = 14;
             this.Label1.Text = "Name";
             // 
+            // lboWorkType
+            // 
+            this.lboWorkType.FormattingEnabled = true;
+            this.lboWorkType.Items.AddRange(new object[] {
+            "Painting",
+            "Photo",
+            "Sculpture"});
+            this.lboWorkType.Location = new System.Drawing.Point(9, 272);
+            this.lboWorkType.Name = "lboWorkType";
+            this.lboWorkType.Size = new System.Drawing.Size(84, 30);
+            this.lboWorkType.TabIndex = 28;
+            // 
             // frmArtist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(256, 299);
+            this.ClientSize = new System.Drawing.Size(251, 354);
+            this.Controls.Add(this.lboWorkType);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.Label5);
             this.Controls.Add(this.optSort);
@@ -199,7 +213,6 @@ namespace Version_1_C
             this.Controls.Add(this.Label1);
             this.Name = "frmArtist";
             this.Text = "frmArtist";
-            //this.Load += new System.EventHandler(this.frmArtist_Load);
             this.optSort.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,5 +237,6 @@ namespace Version_1_C
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.TextBox txtName;
         internal System.Windows.Forms.Label Label1;
+        private System.Windows.Forms.ListBox lboWorkType;
     }
 }

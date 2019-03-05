@@ -1,39 +1,51 @@
 using System;
-using System.Collections;
-using System.Windows.Forms;
+using System.Collections.Generic;
+//using System.Windows.Forms;
 
 namespace Version_1_C
 {
     [Serializable()] 
-    public class clsArtistList : SortedList
+    public class clsArtistList : SortedList<string, clsArtist>
     {
         private const string _FileName = "gallery.xml";
 
-        public void EditArtist(string prKey)
+        public string EditArtist(string prKey)
         {
+            string lcOutcome = "";
             clsArtist lcArtist;
-            lcArtist = (clsArtist)this[prKey];
+
+            lcArtist = this[prKey];
             if (lcArtist != null)
+            {
                 lcArtist.EditDetails();
+                lcOutcome = "done";
+            }
             else
-                MessageBox.Show("Sorry no artist by this name");
+            {
+                //              MessageBox.Show("Sorry no artist by this name");
+                lcOutcome = "nokey";
+            }
+            return lcOutcome;
         }
        
-        public void NewArtist()
+        public string NewArtist()
         {
+            string lcOutcome = "";
+
             clsArtist lcArtist = new clsArtist(this);
             try
             {
                 if (lcArtist.GetKey() != "")
                 {
                     Add(lcArtist.GetKey(), lcArtist);
-                    MessageBox.Show("Artist added!");
+                    lcOutcome = "done";
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Duplicate Key!");
+                lcOutcome = "dupkey";
             }
+            return lcOutcome;
         }
         
         public decimal GetTotalValue()
@@ -46,8 +58,10 @@ namespace Version_1_C
             return lcTotal;
         }
 
-        public void Save()
+        public string Save()
         {
+            string lcOutcome = "";
+
             try
             {
                 System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Create);
@@ -56,11 +70,14 @@ namespace Version_1_C
 
                 lcFormatter.Serialize(lcFileStream, this);
                 lcFileStream.Close();
+                lcOutcome = "done";
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "File Save Error");
+                lcOutcome = e.Message;
+                //MessageBox.Show(e.Message, "File Save Error");
             }
+            return lcOutcome;
         }
 
         public static clsArtistList Retrieve()
@@ -79,8 +96,10 @@ namespace Version_1_C
 
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "File Retrieve Error");
-                //lcArtistList = null;??
+                //MessageBox.Show(e.Message, "File Retrieve Error");
+                //lcArtistList = null;
+                System.ArgumentException lcEx = new System.ArgumentException("File load error", e);
+                throw lcEx;
             }
             return lcArtistList;
         }

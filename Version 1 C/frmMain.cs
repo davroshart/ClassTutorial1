@@ -32,7 +32,15 @@ namespace Version_1_C
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _ArtistList.NewArtist();
+            switch (_ArtistList.NewArtist())
+            {
+                case "done":
+                    MessageBox.Show("Artist added!");
+                    break;
+                case "dupkey":
+                    MessageBox.Show("Duplicate Key!");
+                    break;
+            }
             updateDisplay();
         }
 
@@ -41,16 +49,22 @@ namespace Version_1_C
             string lcKey;
 
             lcKey = Convert.ToString(lstArtists.SelectedItem);
+
             if (lcKey != null)
             {
                 _ArtistList.EditArtist(lcKey);
                 updateDisplay();
             }
+            else    
+                MessageBox.Show("Sorry no artist by this name");
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            _ArtistList.Save();
+            string lcOutcome = _ArtistList.Save();
+            
+            if (lcOutcome != "done")
+                MessageBox.Show(lcOutcome, "File Save Error");
             Close();
         }
 
@@ -70,8 +84,15 @@ namespace Version_1_C
         private void frmMain_Load(object sender, EventArgs e)
         {
             //_Retrieve();
-            _ArtistList = clsArtistList.Retrieve();
-            updateDisplay();
+            try
+            {
+                _ArtistList = clsArtistList.Retrieve();
+                updateDisplay();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "File Retrieve Error");
+            }
         }
     }
 }

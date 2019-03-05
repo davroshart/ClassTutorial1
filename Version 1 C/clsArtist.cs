@@ -32,11 +32,7 @@ namespace Version_1_C
         public void EditDetails()
         {
             _ArtistDialog.SetDetails(this);
-            if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                _ArtistDialog.();
-                _TotalValue = WorksList.GetTotalValue();
-            }
+            _TotalValue = WorksList.GetTotalValue();
         }
 
         public string GetKey()
@@ -47,6 +43,11 @@ namespace Version_1_C
         public decimal GetWorksValue()
         {
             return TotalValue;
+        }
+
+        public bool IsDuplicate(string prArtistName)
+        {
+            return _ArtistList.ContainsKey(prArtistName);
         }
     }
 }

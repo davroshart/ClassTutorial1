@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Forms;
 
 namespace Version_1_C
 {
@@ -12,17 +11,15 @@ namespace Version_1_C
         [NonSerialized()]
         private static frmSculpture _sculptDialog;
 
+        public float Weight { get => _Weight; set => _Weight = value; }
+        public string Material { get => _Material; set => _Material = value; }
+
         public override void EditDetails()
         {
             if (_sculptDialog == null)
-            {
                 _sculptDialog = new frmSculpture();
-            }
-            _sculptDialog.SetDetails(_Name, _Date, _Value, _Weight, _Material);
-            if (_sculptDialog.ShowDialog() == DialogResult.OK)
-            {
-                _sculptDialog.GetDetails(ref _Name, ref _Date, ref _Value, ref _Weight, ref _Material);
-            }
+            _sculptDialog.SetDetails(this);
+
         }
     }
 }

@@ -11,9 +11,8 @@ namespace Version_1_C
     public partial class frmArtist : Form
     {      
         private clsArtist _Artist;
-        private clsArtistList _ArtistList;
         private clsWorksList _WorksList;
-        private byte _SortOrder; // 0 = Name, 1 = Date
+        private char _WorkType;
 
         public frmArtist()
         {
@@ -26,9 +25,7 @@ namespace Version_1_C
             txtPhone.Text = _Artist.Phone;
             txtSpeciality.Text = _Artist.Speciality;
             lblTotal.Text = Convert.ToString(_Artist.TotalValue);
-            _ArtistList = _Artist.ArtistList;
             _WorksList = _Artist.WorksList;
-            _SortOrder = _WorksList.SortOrder;
         }
 
         private void pushData()
@@ -41,7 +38,7 @@ namespace Version_1_C
         private void updateDisplay()
         {
             txtName.Enabled = txtName.Text == "";
-            if (_SortOrder == 0)
+            if (_WorksList.SortOrder == 0)
             {
                 _WorksList.SortByName();
                 rbByName.Checked = true;
@@ -55,6 +52,26 @@ namespace Version_1_C
             lstWorks.DataSource = null;
             lstWorks.DataSource = _WorksList;
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
+
+            switch (txtSpeciality.Text.ToLower())
+            {
+                case "painting":
+                    _WorkType = 'p';
+                    lboWorkType.SelectedIndex = 0;
+                    break;
+                case "photography":
+                    _WorkType = 'h';
+                    lboWorkType.SelectedIndex = 1;
+                    break;
+                case "sculpture":
+                    _WorkType = 's';
+                    lboWorkType.SelectedIndex = 2;
+                    break;
+                default:
+                    _WorkType = 'p';
+                    lboWorkType.SelectedIndex = 0;
+                    break;
+            }
         }
 
         public void SetDetails(clsArtist prArtist)
@@ -67,13 +84,30 @@ namespace Version_1_C
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            _WorksList.DeleteWork(lstWorks.SelectedIndex);
-            updateDisplay();
+            if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                _WorksList.DeleteWork(lstWorks.SelectedIndex);
+                updateDisplay();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _WorksList.AddWork();
+            string lcOutcome;
+
+            switch (lboWorkType.Text)
+            {
+                case "painting":
+                    _WorkType = 'p';
+                    break;
+                case "photography":
+                    _WorkType = 'h';
+                    break;
+                case "sculpture":
+                    _WorkType = 's';
+                    break;
+            }
+            _WorksList.AddWork(_WorkType);
             updateDisplay();
         }
 
@@ -89,7 +123,7 @@ namespace Version_1_C
         public virtual Boolean isValid()
         {
             if (txtName.Enabled && txtName.Text != "")
-                if (_ArtistList.Contains(txtName.Text))
+                if (_Artist.IsDuplicate(txtName.Text))
                 {
                     MessageBox.Show("Artist with that name already exists!");
                     return false;
@@ -105,14 +139,16 @@ namespace Version_1_C
             int lcIndex = lstWorks.SelectedIndex;
             if (lcIndex >= 0)
             {
-                _WorksList.EditWork(lcIndex);
-                updateDisplay();
+                if (_WorksList.EditWork(lcIndex) == "done")
+                    updateDisplay();
+                else
+                    MessageBox.Show("Sorry no work selected #" + Convert.ToString(lcIndex));
             }
         }
 
         private void rbByDate_CheckedChanged(object sender, EventArgs e)
         {
-            _SortOrder = Convert.ToByte(rbByDate.Checked);
+            _WorksList.SortOrder = Convert.ToByte(rbByDate.Checked);
             updateDisplay();
         }
 

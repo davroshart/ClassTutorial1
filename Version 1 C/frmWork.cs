@@ -10,32 +10,39 @@ namespace Version_1_C
 {
     public partial class frmWork : Form
     {
-        private clsWork _Work;
+        protected clsWork _Work;
 
         public frmWork()
         {
             InitializeComponent();
         }
 
-        public void SetDetails(string prName, DateTime prDate, decimal prValue)
+        protected virtual void updateForm()
         {
-            txtName.Text = prName;
-            txtCreation.Text = prDate.ToShortDateString();
-            txtValue.Text = Convert.ToString(prValue);
+            txtName.Text = _Work.Name;
+            txtCreation.Text = _Work.Date.ToShortDateString();
+            txtValue.Text = _Work.Value.ToString();
         }
 
-        public void GetDetails(ref string prName, ref DateTime prDate, ref decimal prValue)
+        protected virtual void pushData()
         {
-            prName = txtName.Text;
-            prDate = Convert.ToDateTime(txtCreation.Text);
-            prValue = Convert.ToDecimal(txtValue.Text);
+            _Work.Name = txtName.Text;
+            _Work.Date = DateTime.Parse(txtCreation.Text);
+            _Work.Value = decimal.Parse(txtValue.Text);
+        }
+
+        public void SetDetails(clsWork prWork)
+        {
+            _Work = prWork;
+            updateForm();
+            ShowDialog();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (isValid() == true)
+            if (IsValid() == true)
             {
-                DialogResult = DialogResult.OK;
+                pushData();
                 Close();
             }
         }
@@ -45,14 +52,10 @@ namespace Version_1_C
             Close();
         }
         
-        public virtual bool isValid()
+        public virtual bool IsValid()
         {
             return true;
         }
 
-        private void lboType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //reface of work form type??
-        }
     }
 }
