@@ -10,7 +10,7 @@ namespace Version_1_C
         private string _Type;
 
         [NonSerialized()]
-        private static frmPhotograph _photoDialog;
+        private static frmPhotograph _PhotoDialog;
 
         public float Width { get => _Width; set => _Width = value; }
         public float Height { get => _Height; set => _Height = value; }
@@ -18,9 +18,9 @@ namespace Version_1_C
 
         public override void EditDetails()
         {
-            if (_photoDialog == null)
-                _photoDialog = new frmPhotograph();
-            _photoDialog.SetDetails(this);
+            if (_PhotoDialog == null)
+                _PhotoDialog = new frmPhotograph();
+            _PhotoDialog.SetDetails(this);
 
         }
     }

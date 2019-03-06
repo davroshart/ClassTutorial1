@@ -44,7 +44,7 @@ namespace Version_1_C
             this.Label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
-            this.lboWorkType = new System.Windows.Forms.ListBox();
+            this.lstWorkType = new System.Windows.Forms.ListBox();
             this.optSort.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,24 +179,24 @@ namespace Version_1_C
             this.Label1.TabIndex = 14;
             this.Label1.Text = "Name";
             // 
-            // lboWorkType
+            // lstWorkType
             // 
-            this.lboWorkType.FormattingEnabled = true;
-            this.lboWorkType.Items.AddRange(new object[] {
+            this.lstWorkType.FormattingEnabled = true;
+            this.lstWorkType.Items.AddRange(new object[] {
             "Painting",
-            "Photo",
+            "Photograph",
             "Sculpture"});
-            this.lboWorkType.Location = new System.Drawing.Point(9, 272);
-            this.lboWorkType.Name = "lboWorkType";
-            this.lboWorkType.Size = new System.Drawing.Size(84, 30);
-            this.lboWorkType.TabIndex = 28;
+            this.lstWorkType.Location = new System.Drawing.Point(9, 272);
+            this.lstWorkType.Name = "lstWorkType";
+            this.lstWorkType.Size = new System.Drawing.Size(84, 30);
+            this.lstWorkType.TabIndex = 28;
             // 
             // frmArtist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(251, 354);
-            this.Controls.Add(this.lboWorkType);
+            this.Controls.Add(this.lstWorkType);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.Label5);
             this.Controls.Add(this.optSort);
@@ -237,6 +237,6 @@ namespace Version_1_C
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.TextBox txtName;
         internal System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.ListBox lboWorkType;
+        private System.Windows.Forms.ListBox lstWorkType;
     }
 }

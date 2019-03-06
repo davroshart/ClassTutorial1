@@ -57,19 +57,19 @@ namespace Version_1_C
             {
                 case "painting":
                     _WorkType = 'p';
-                    lboWorkType.SelectedIndex = 0;
+                    lstWorkType.SelectedIndex = 0;
                     break;
                 case "photography":
                     _WorkType = 'h';
-                    lboWorkType.SelectedIndex = 1;
+                    lstWorkType.SelectedIndex = 1;
                     break;
                 case "sculpture":
                     _WorkType = 's';
-                    lboWorkType.SelectedIndex = 2;
+                    lstWorkType.SelectedIndex = 2;
                     break;
                 default:
                     _WorkType = 'p';
-                    lboWorkType.SelectedIndex = 0;
+                    lstWorkType.SelectedIndex = 0;
                     break;
             }
         }
@@ -93,14 +93,13 @@ namespace Version_1_C
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string lcOutcome;
-
-            switch (lboWorkType.Text)
+            
+            switch (lstWorkType.Text.ToLower())
             {
                 case "painting":
                     _WorkType = 'p';
                     break;
-                case "photography":
+                case "photograph":
                     _WorkType = 'h';
                     break;
                 case "sculpture":
