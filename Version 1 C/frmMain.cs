@@ -8,11 +8,15 @@ using System.Windows.Forms;
 
 namespace Version_1_C
 {
-    public partial class frmMain : Form
+    sealed public partial class frmMain : Form
     {
         /// <summary>
         /// Matthias Otto, NMIT, 2010-2016
         /// </summary>
+        /// 
+        private static readonly frmMain _Instance =
+            new frmMain();
+
         public frmMain()
         {
             InitializeComponent();
@@ -20,7 +24,9 @@ namespace Version_1_C
 
         private clsArtistList _ArtistList = new clsArtistList();
 
-        private void updateDisplay()
+        public static frmMain Instance => _Instance;
+
+        public void UpdateDisplay()
         {
             string[] lcDisplayList = new string[_ArtistList.Count];
 
@@ -30,41 +36,56 @@ namespace Version_1_C
             lblValue.Text = Convert.ToString(_ArtistList.GetTotalValue());
         }
 
+        public void UpdateDisplay(clsArtistList prArtistList)
+        {
+            string[] lcDisplayList = new string[prArtistList.Count];
+
+            lstArtists.DataSource = null;
+            prArtistList.Keys.CopyTo(lcDisplayList, 0);
+            lstArtists.DataSource = lcDisplayList;
+            lblValue.Text = Convert.ToString(prArtistList.GetTotalValue());
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            switch (_ArtistList.NewArtist())
+            try
             {
-                case "done":
-                    MessageBox.Show("Artist added!");
-                    break;
-                case "dupkey":
-                    MessageBox.Show("Duplicate Key!");
-                    break;
+                frmArtist.Run(new clsArtist(_ArtistList));
             }
-            updateDisplay();
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Add Error");
+            }
+            UpdateDisplay();
         }
 
         private void lstArtists_DoubleClick(object sender, EventArgs e)
         {
-            string lcKey;
+            string lcKey = Convert.ToString(lstArtists.SelectedItem);
 
-            lcKey = Convert.ToString(lstArtists.SelectedItem);
-
-            if (lcKey != null)
+            try
             {
-                _ArtistList.EditArtist(lcKey);
-                updateDisplay();
+                /*_ArtistList.EditArtist(lcKey);
+                updateDisplay();*/
+                frmArtist.Run(_ArtistList[lcKey]);
             }
-            else    
-                MessageBox.Show("Sorry no artist by this name");
+            catch(Exception ex)
+            {                
+                MessageBox.Show(ex.Message, "Edit Error");
+            } 
+               
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            string lcOutcome = _ArtistList.Save();
-            
-            if (lcOutcome != "done")
-                MessageBox.Show(lcOutcome, "File Save Error");
+            try
+            {
+                _ArtistList.Save();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "File Save Error");
+            }
             Close();
         }
 
@@ -77,7 +98,7 @@ namespace Version_1_C
             {
                 lstArtists.ClearSelected();
                 _ArtistList.Remove(lcKey);
-                updateDisplay();
+                UpdateDisplay();
             }
         }
 
@@ -87,7 +108,7 @@ namespace Version_1_C
             try
             {
                 _ArtistList = clsArtistList.Retrieve();
-                updateDisplay();
+                UpdateDisplay();
             }
             catch(Exception ex)
             {

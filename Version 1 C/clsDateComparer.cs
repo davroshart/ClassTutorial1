@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 namespace Version_1_C
 {
-    class clsDateComparer : IComparer<clsWork>
+    sealed class clsSingletonDateComprere : IComparer<clsWork>
     {
-        public int Compare(clsWork x, clsWork y)
-        {
-            DateTime lcDateX = x.Date;
-            DateTime lcDateY = y.Date;
+        public static readonly clsSingletonDateComprere Instance =
+            new clsSingletonDateComprere();
+        private clsSingletonDateComprere() { }
 
-            return lcDateX.CompareTo(lcDateY);
+        public int Compare(clsWork prX, clsWork prY)
+        {
+            return prX.Date.CompareTo(prY.Date);
         }
     }
 }

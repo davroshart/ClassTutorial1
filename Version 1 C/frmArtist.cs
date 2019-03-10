@@ -1,5 +1,5 @@
 using System;
-//using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,9 +14,28 @@ namespace Version_1_C
         private clsWorksList _WorksList;
         private char _WorkType;
 
+        private static Dictionary<clsArtist, frmArtist> _ArtistFormList =
+            new Dictionary<clsArtist, frmArtist>();
+
         public frmArtist()
         {
             InitializeComponent();
+        }
+
+        public static void Run(clsArtist prArtist)
+        {
+            frmArtist lcArtistForm;
+            if (!_ArtistFormList.TryGetValue(prArtist, out lcArtistForm))
+            {
+                lcArtistForm = new frmArtist();
+                _ArtistFormList.Add(prArtist, lcArtistForm);
+                lcArtistForm.SetDetails(prArtist);
+            }
+            else
+            {
+                lcArtistForm.Show();
+                lcArtistForm.Activate();
+            }
         }
 
         private void updateForm()
@@ -79,7 +98,7 @@ namespace Version_1_C
             _Artist = prArtist;
             updateForm();
             updateDisplay();
-            ShowDialog();
+            Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -112,10 +131,27 @@ namespace Version_1_C
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (isValid())
-            {
-                pushData();
-                DialogResult = DialogResult.OK;
+            if (isValid() == true)
+            { 
+                try
+                {
+                    pushData();
+                    if (txtName.Enabled)
+                    {
+                        _Artist.NewArtist();
+                        MessageBox.Show("Artist added!", "Success");
+
+                        /*problem: watch _ArtistList inside this Instance function temporarily become empty.
+                         Result is the new artist isn't added to display, even though is present in list here!*/
+                        frmMain.Instance.UpdateDisplay();
+                        txtName.Enabled = false;
+                    }
+                    Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -150,6 +186,5 @@ namespace Version_1_C
             _WorksList.SortOrder = Convert.ToByte(rbByDate.Checked);
             updateDisplay();
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace Version_1_C
     {
         private const string _FileName = "gallery.xml";
 
-        public string EditArtist(string prKey)
+     /*   public string EditArtist(string prKey)
         {
             string lcOutcome = "";
             clsArtist lcArtist;
@@ -26,11 +26,11 @@ namespace Version_1_C
                 lcOutcome = "nokey";
             }
             return lcOutcome;
-        }
+        }*/
        
-        public string NewArtist()
+     /*   public void NewArtist()
         {
-            string lcOutcome = "";
+            if (!string.IsNullOrEmpty(N))
 
             clsArtist lcArtist = new clsArtist(this);
             try
@@ -38,15 +38,14 @@ namespace Version_1_C
                 if (lcArtist.GetKey() != "")
                 {
                     Add(lcArtist.GetKey(), lcArtist);
-                    lcOutcome = "done";
                 }
             }
             catch (Exception)
             {
-                lcOutcome = "dupkey";
+                System.ArgumentException lcEx = new System.ArgumentException("Duplicate key", "New Artist Error");
+                throw lcEx;
             }
-            return lcOutcome;
-        }
+        }*/
         
         public decimal GetTotalValue()
         {
@@ -58,10 +57,9 @@ namespace Version_1_C
             return lcTotal;
         }
 
-        public string Save()
+        public void Save()
         {
-            string lcOutcome = "";
-
+        
             try
             {
                 System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Create);
@@ -70,14 +68,12 @@ namespace Version_1_C
 
                 lcFormatter.Serialize(lcFileStream, this);
                 lcFileStream.Close();
-                lcOutcome = "done";
             }
             catch (Exception e)
             {
-                lcOutcome = e.Message;
-                //MessageBox.Show(e.Message, "File Save Error");
+                System.ArgumentException lcEx = new System.ArgumentException("Save Error", e);
+                throw lcEx;
             }
-            return lcOutcome;
         }
 
         public static clsArtistList Retrieve()
@@ -93,7 +89,6 @@ namespace Version_1_C
                 lcArtistList = (clsArtistList)lcFormatter.Deserialize(lcFileStream);
                 lcFileStream.Close();
             }
-
             catch (Exception e)
             {
                 //MessageBox.Show(e.Message, "File Retrieve Error");

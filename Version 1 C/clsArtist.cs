@@ -12,8 +12,9 @@ namespace Version_1_C
 
         private clsWorksList _WorksList;
         private clsArtistList _ArtistList;
+
         
-        private static frmArtist _ArtistDialog = new frmArtist();
+      //  private static frmArtist _ArtistDialog = new frmArtist();
 
         public string Name { get => _Name; set => _Name = value; }
         public string Speciality { get => _Speciality; set => _Speciality = value; }
@@ -26,13 +27,20 @@ namespace Version_1_C
         {
             _WorksList = new clsWorksList();
             _ArtistList = prArtistList;
-            EditDetails();
+            //EditDetails();
         }
-        
-        public void EditDetails()
+
+        /*    public void EditDetails()
+             {
+                // _ArtistDialog.SetDetails(this);
+                 _TotalValue = WorksList.GetTotalValue();
+             }*/
+        public void NewArtist()
         {
-            _ArtistDialog.SetDetails(this);
-            _TotalValue = WorksList.GetTotalValue();
+            if (!string.IsNullOrEmpty(Name))
+                _ArtistList.Add(Name, this);
+            else
+                throw new Exception("No artist name entered");
         }
 
         public string GetKey()
