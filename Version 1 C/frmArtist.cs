@@ -38,6 +38,12 @@ namespace Version_1_C
             }
         }
 
+        private void updateTitle(string prGalleryName)
+        {
+            if (!string.IsNullOrEmpty(prGalleryName))
+                Text = "Artist Details - " + prGalleryName;
+        }
+
         private void updateForm()
         {
             txtName.Text = _Artist.Name;
@@ -99,6 +105,8 @@ namespace Version_1_C
             updateForm();
             updateDisplay();
             Show();
+            frmMain.Instance.GalleryNameChanged += new frmMain.Notify(updateTitle);
+            updateTitle(_Artist.ArtistList.GalleryName);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -141,8 +149,6 @@ namespace Version_1_C
                         _Artist.NewArtist();
                         MessageBox.Show("Artist added!", "Success");
 
-                        /*problem: watch _ArtistList inside this Instance function temporarily become empty.
-                         Result is the new artist isn't added to display, even though is present in list here!*/
                         frmMain.Instance.UpdateDisplay();
                         txtName.Enabled = false;
                     }
@@ -172,12 +178,14 @@ namespace Version_1_C
         private void lstWorks_DoubleClick(object sender, EventArgs e)
         {
             int lcIndex = lstWorks.SelectedIndex;
-            if (lcIndex >= 0)
+            try
             {
-                if (_WorksList.EditWork(lcIndex) == "done")
-                    updateDisplay();
-                else
-                    MessageBox.Show("Sorry no work selected #" + Convert.ToString(lcIndex));
+                _WorksList.EditWork(lcIndex);
+                updateDisplay();
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show("Sorry no work selected #" + Convert.ToString(lcIndex));
             }
         }
 

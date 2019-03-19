@@ -35,6 +35,7 @@ namespace Version_1_C
             this.btnAdd = new System.Windows.Forms.Button();
             this.Label1 = new System.Windows.Forms.Label();
             this.lstArtists = new System.Windows.Forms.ListBox();
+            this.btnGalleryName = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblValue
@@ -95,11 +96,22 @@ namespace Version_1_C
             this.lstArtists.TabIndex = 7;
             this.lstArtists.DoubleClick += new System.EventHandler(this.lstArtists_DoubleClick);
             // 
+            // btnGalleryName
+            // 
+            this.btnGalleryName.Location = new System.Drawing.Point(161, 130);
+            this.btnGalleryName.Name = "btnGalleryName";
+            this.btnGalleryName.Size = new System.Drawing.Size(79, 35);
+            this.btnGalleryName.TabIndex = 14;
+            this.btnGalleryName.Text = "Gallery Name";
+            this.btnGalleryName.UseVisualStyleBackColor = true;
+            this.btnGalleryName.Click += new System.EventHandler(this.btnGalleryName_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(256, 253);
+            this.Controls.Add(this.btnGalleryName);
             this.Controls.Add(this.lblValue);
             this.Controls.Add(this.Label2);
             this.Controls.Add(this.btnQuit);
@@ -123,6 +135,7 @@ namespace Version_1_C
         internal System.Windows.Forms.Button btnAdd;
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.ListBox lstArtists;
+        private System.Windows.Forms.Button btnGalleryName;
     }
 }
 

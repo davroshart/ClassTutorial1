@@ -9,7 +9,7 @@ namespace Version_1_C
         private string _Speciality;
         private string _Phone;
         private decimal _TotalValue;
-
+        
         private clsWorksList _WorksList;
         private clsArtistList _ArtistList;
 

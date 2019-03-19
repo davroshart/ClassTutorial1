@@ -30,17 +30,16 @@ namespace Version_1_C
             }
         }
         
-        public string EditWork(int prIndex)
+        public void EditWork(int prIndex)
         {
             if (prIndex >= 0 && prIndex < this.Count)
             {
                 clsWork lcWork = (clsWork)this[prIndex];
                 lcWork.EditDetails();
-                return "done";
             }
             else
             {
-                return "badindex";
+                throw new Exception("No work selected");
             }
         }
 

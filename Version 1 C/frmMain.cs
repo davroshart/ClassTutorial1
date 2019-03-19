@@ -17,7 +17,7 @@ namespace Version_1_C
         private static readonly frmMain _Instance =
             new frmMain();
 
-        public frmMain()
+        private frmMain()
         {
             InitializeComponent();
         }
@@ -25,6 +25,25 @@ namespace Version_1_C
         private clsArtistList _ArtistList = new clsArtistList();
 
         public static frmMain Instance => _Instance;
+
+        // old form:
+        //public static frmMain Instance
+        //{
+        //    get
+        //    {
+        //        return _Instance;
+        //    }
+
+        //}
+        public delegate void Notify(string prGalleryName);
+
+        public event Notify GalleryNameChanged;
+
+        private void updateTitle(string prGalleryName)
+        {
+            if (!string.IsNullOrEmpty(prGalleryName))
+                Text = "Gallery - " + prGalleryName;
+        }
 
         public void UpdateDisplay()
         {
@@ -34,16 +53,6 @@ namespace Version_1_C
             _ArtistList.Keys.CopyTo(lcDisplayList, 0);
             lstArtists.DataSource = lcDisplayList;
             lblValue.Text = Convert.ToString(_ArtistList.GetTotalValue());
-        }
-
-        public void UpdateDisplay(clsArtistList prArtistList)
-        {
-            string[] lcDisplayList = new string[prArtistList.Count];
-
-            lstArtists.DataSource = null;
-            prArtistList.Keys.CopyTo(lcDisplayList, 0);
-            lstArtists.DataSource = lcDisplayList;
-            lblValue.Text = Convert.ToString(prArtistList.GetTotalValue());
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -113,6 +122,24 @@ namespace Version_1_C
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "File Retrieve Error");
+            }
+
+            GalleryNameChanged += new Notify(updateTitle);
+            GalleryNameChanged(_ArtistList.GalleryName);
+        }
+
+        private void btnGalleryName_Click(object sender, EventArgs e)
+        {
+            frmInputBox lcInputBox = new frmInputBox("Gallery Name = "+ _ArtistList.GalleryName +". Enter new gallery name");
+            
+            if (lcInputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                _ArtistList.GalleryName = lcInputBox.GetAnswer();
+                GalleryNameChanged(_ArtistList.GalleryName);
+            }
+            else
+            {
+                lcInputBox.Close();
             }
         }
     }

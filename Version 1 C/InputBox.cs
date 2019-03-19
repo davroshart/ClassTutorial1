@@ -22,7 +22,7 @@ namespace Version_1_C
 
         private void btnOK_Click(object prSender, EventArgs prE)
         {
-            if (txtAnswer.Text.Length > 0 && txtAnswer.Text.Length < 2)
+            if (txtAnswer.Text.Length > 0) //&& (txtAnswer.Text.Length < 2))
             {
                 _Answer = txtAnswer.Text;
                 DialogResult = DialogResult.OK;
@@ -30,7 +30,7 @@ namespace Version_1_C
             }
             else
             {
-                lblError.Text = "Please enter one character into the text box.";
+                lblError.Text = "Please enter one character or more into the text box.";
             }
         }
 
