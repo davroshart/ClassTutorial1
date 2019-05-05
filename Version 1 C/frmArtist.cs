@@ -78,25 +78,7 @@ namespace Version_1_C
             lstWorks.DataSource = _WorksList;
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
 
-            switch (txtSpeciality.Text.ToLower())
-            {
-                case "painting":
-                    _WorkType = 'p';
-                    lstWorkType.SelectedIndex = 0;
-                    break;
-                case "photography":
-                    _WorkType = 'h';
-                    lstWorkType.SelectedIndex = 1;
-                    break;
-                case "sculpture":
-                    _WorkType = 's';
-                    lstWorkType.SelectedIndex = 2;
-                    break;
-                default:
-                    _WorkType = 'p';
-                    lstWorkType.SelectedIndex = 0;
-                    break;
-            }
+            changeWorkType(txtSpeciality.Text);
         }
 
         public void SetDetails(clsArtist prArtist)
@@ -120,19 +102,8 @@ namespace Version_1_C
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
-            switch (lstWorkType.Text.ToLower())
-            {
-                case "painting":
-                    _WorkType = 'p';
-                    break;
-                case "photograph":
-                    _WorkType = 'h';
-                    break;
-                case "sculpture":
-                    _WorkType = 's';
-                    break;
-            }
+
+            changeWorkType(lstWorkType.Text);
             _WorksList.AddWork(_WorkType);
             updateDisplay();
         }
@@ -175,6 +146,25 @@ namespace Version_1_C
                 return true;
         }
 
+        private void changeWorkType(string prDescription)
+        {
+            switch (prDescription.ToLower())
+            {
+                case "painting":
+                    _WorkType = 'p';
+                    break;
+                case "photograph":
+                    _WorkType = 'h';
+                    break;
+                case "sculpture":
+                    _WorkType = 's';
+                    break;
+                default:
+                    _WorkType = 'p';
+                    break;
+            }
+        }
+
         private void lstWorks_DoubleClick(object sender, EventArgs e)
         {
             int lcIndex = lstWorks.SelectedIndex;
@@ -183,7 +173,7 @@ namespace Version_1_C
                 _WorksList.EditWork(lcIndex);
                 updateDisplay();
             }
-            catch (Exception ex)
+            catch (Exception)
             { 
                 MessageBox.Show("Sorry no work selected #" + Convert.ToString(lcIndex));
             }

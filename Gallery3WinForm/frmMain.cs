@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Version_1_C
+namespace Gallery3WinForm
 {
     sealed public partial class frmMain : Form
     {
@@ -22,7 +22,7 @@ namespace Version_1_C
             InitializeComponent();
         }
 
-        private clsArtistList _ArtistList = new clsArtistList();
+    //    private clsArtistList _ArtistList = new clsArtistList();
 
         public static frmMain Instance => _Instance;
 
@@ -44,21 +44,30 @@ namespace Version_1_C
                 Text = "Gallery - " + prGalleryName;
         }
 
-        public void UpdateDisplay()
+        async public void UpdateDisplay()
         {
-            string[] lcDisplayList = new string[_ArtistList.Count];
+            /*           string[] lcDisplayList = new string[_ArtistList.Count];
 
-            lstArtists.DataSource = null;
-            _ArtistList.Keys.CopyTo(lcDisplayList, 0);
-            lstArtists.DataSource = lcDisplayList;
-            lblValue.Text = Convert.ToString(_ArtistList.GetTotalValue());
+                       lstArtists.DataSource = null;
+                       _ArtistList.Keys.CopyTo(lcDisplayList, 0);
+                       lstArtists.DataSource = lcDisplayList;
+                       lblValue.Text = Convert.ToString(_ArtistList.GetTotalValue());*/
+            try
+            {
+                lstArtists.DataSource = null;
+                lstArtists.DataSource = await ServiceClient.GetArtistNamesAsync();
+            }
+            catch
+            {
+                lstArtists.Text = "Error";
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                frmArtist.Run(new clsArtist(_ArtistList));
+                frmArtist.Run("");
             }
             catch(Exception ex)
             {
@@ -75,61 +84,61 @@ namespace Version_1_C
             {
                 /*_ArtistList.EditArtist(lcKey);
                 updateDisplay();*/
-                frmArtist.Run(_ArtistList[lcKey]);
+                frmArtist.Run(lstArtists.SelectedItem as string);
             }
             catch(Exception ex)
             {                
                 MessageBox.Show(ex.Message, "Edit Error");
-            } 
+            }
                
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            try
+/*            try
             {
                 _ArtistList.Save();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "File Save Error");
-            }
+            }*/
             Close();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_ClickAsync(object sender, EventArgs e)
         {
             string lcKey;
 
             lcKey = Convert.ToString(lstArtists.SelectedItem);
-            if (lcKey != null)
+            if (lcKey != null && MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 lstArtists.ClearSelected();
-                _ArtistList.Remove(lcKey);
-                UpdateDisplay();
+                MessageBox.Show(await ServiceClient.DeleteArtist(lcKey));
+                frmMain.Instance.UpdateDisplay();
             }
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             //_Retrieve();
-            try
+ /*           try
             {
-                _ArtistList = clsArtistList.Retrieve();
+                _ArtistList = clsArtistList.Retrieve();*/
                 UpdateDisplay();
-            }
+ /*           }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "File Retrieve Error");
             }
 
             GalleryNameChanged += new Notify(updateTitle);
-            GalleryNameChanged(_ArtistList.GalleryName);
+            GalleryNameChanged(_ArtistList.GalleryName);*/
         }
 
         private void btnGalleryName_Click(object sender, EventArgs e)
         {
-            frmInputBox lcInputBox = new frmInputBox("Gallery Name = "+ _ArtistList.GalleryName +". Enter new gallery name");
+ /*           frmInputBox lcInputBox = new frmInputBox("Gallery Name = "+ _ArtistList.GalleryName +". Enter new gallery name");
             
             if (lcInputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -139,7 +148,7 @@ namespace Version_1_C
             else
             {
                 lcInputBox.Close();
-            }
+            }*/
         }
     }
 }

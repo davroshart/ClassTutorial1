@@ -61,7 +61,7 @@ namespace Version_1_C
     
         public void SortByDate()
         {
-            Sort(clsSingletonDateComprere.Instance);
+            Sort(clsSingletonDateComparer.Instance);
         }
     }
 }

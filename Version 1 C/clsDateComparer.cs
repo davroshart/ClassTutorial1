@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Version_1_C
 {
-    sealed class clsSingletonDateComprere : IComparer<clsWork>
+    sealed class clsSingletonDateComparer : IComparer<clsWork>
     {
-        public static readonly clsSingletonDateComprere Instance =
-            new clsSingletonDateComprere();
-        private clsSingletonDateComprere() { }
+        public static readonly clsSingletonDateComparer Instance =
+            new clsSingletonDateComparer();
+        private clsSingletonDateComparer() { }
 
         public int Compare(clsWork prX, clsWork prY)
         {
