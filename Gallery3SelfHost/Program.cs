@@ -12,7 +12,7 @@ namespace Gallery3SelfHost
     {
         static void Main(string[] args)
         {
-         //   GalleryController lcGallery = new GalleryController();
+     //       GalleryController lcGallery = new GalleryController();
             
             // Set up server configuration
             Uri _baseAddress = new Uri("http://localhost:60065/");
@@ -29,7 +29,7 @@ namespace Gallery3SelfHost
             Console.WriteLine("Gallery Web-API Self hosted on " + _baseAddress);
             Console.WriteLine("Hit ENTER to exit...");
 
-          //  Console.WriteLine(lcGallery.GetArtistNames()[0]);
+        //    Console.WriteLine(lcGallery.GetArtistNames()[0]);
 
             Console.ReadLine();
             server.CloseAsync().Wait();

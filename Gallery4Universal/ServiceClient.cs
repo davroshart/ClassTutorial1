@@ -67,7 +67,7 @@ namespace Gallery4Universal
 
         }
 
-        internal async static Task<string> DeleteArtist(string prKey)
+        internal async static Task<string> DeleteArtistAsync(string prKey)
         {
             using (HttpClient lcHttpClient = new HttpClient())
             {

@@ -92,6 +92,48 @@
     <Compile Include="InputBox.designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="mockAddBike.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockAddBike.Designer.cs">
+      <DependentUpon>mockAddBike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockBikeMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockBikeMain.Designer.cs">
+      <DependentUpon>mockBikeMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockBrandDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockBrandDisplay.Designer.cs">
+      <DependentUpon>mockBrandDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockInputBox.Designer.cs">
+      <DependentUpon>mockInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockMessage.Designer.cs">
+      <DependentUpon>mockMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockOrderDetails.Designer.cs">
+      <DependentUpon>mockOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockOrders.Designer.cs">
+      <DependentUpon>mockOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceClient.cs" />
@@ -122,6 +164,27 @@
     <EmbeddedResource Include="InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockAddBike.resx">
+      <DependentUpon>mockAddBike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockBikeMain.resx">
+      <DependentUpon>mockBikeMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockBrandDisplay.resx">
+      <DependentUpon>mockBrandDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockInputBox.resx">
+      <DependentUpon>mockInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockMessage.resx">
+      <DependentUpon>mockMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockOrderDetails.resx">
+      <DependentUpon>mockOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockOrders.resx">
+      <DependentUpon>mockOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

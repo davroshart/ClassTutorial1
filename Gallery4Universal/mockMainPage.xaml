@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="Gallery4Universal.mockMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Gallery4Universal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="190" Margin="89,170,0,0" VerticalAlignment="Top" Width="139" FontSize="28">
+            <ListBoxItem Content="Avanti" FontSize="28"/>
+            <ListBoxItem Content="Giant" FontSize="28"/>
+            <ListBoxItem Content="Scott" FontSize="28"/>
+        </ListBox>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="44" Margin="93,133,0,0" Text="Bike Brands" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" FontSize="24"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="57" Margin="118,55,0,0" Text="Search Bikes" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="36"/>
+        <Button x:Name="button" Content="Open" HorizontalAlignment="Left" Height="46" Margin="83,400,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button x:Name="button1" Content="Exit" HorizontalAlignment="Left" Height="46" Margin="234,400,0,0" VerticalAlignment="Top" Width="104"/>
+        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="167" Margin="83,514,0,0" VerticalAlignment="Top" Width="255" FontStyle="Italic">
+            <ListBoxItem Content="Your order succeeded" FontSize="22" FontStyle="Normal"/>
+        </ListBox>
+
+    </Grid>
+</Page>

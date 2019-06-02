@@ -11,17 +11,17 @@
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="37" Margin="33,10,0,0" Text="My Gallery" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" FontSize="20"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="55" Margin="33,42,0,0" Text="my artists" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" FontSize="36"/>
-        <ListBox x:Name="lstArtists" HorizontalAlignment="Left" Height="341" Margin="33,95,0,0" VerticalAlignment="Top" Width="205">
+        <ListBox x:Name="lstArtists" HorizontalAlignment="Left" Height="341" Margin="33,95,0,0" VerticalAlignment="Top" Width="205" DoubleTapped="lstDoubleTap">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" FontSize="24"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Height="47" Margin="298,117,0,0" VerticalAlignment="Top" Width="100" FontSize="24"/>
-        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Height="47" Margin="298,191,0,0" VerticalAlignment="Top" Width="100" FontSize="24"/>
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="44" Margin="298,266,0,0" VerticalAlignment="Top" Width="100" FontSize="24"/>
-        <TextBlock x:Name="txbMessage" HorizontalAlignment="Left" Height="56" Margin="33,457,0,0" Text="Messages" TextWrapping="Wrap" VerticalAlignment="Top" Width="353"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Height="47" Margin="298,117,0,0" VerticalAlignment="Top" Width="100" FontSize="24" Click="Add"/>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Height="47" Margin="298,191,0,0" VerticalAlignment="Top" Width="100" FontSize="24" Click="editClick"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="44" Margin="298,266,0,0" VerticalAlignment="Top" Width="100" FontSize="24" Click="btnDeleteClick"/>
+        <TextBlock x:Name="txbMessage" HorizontalAlignment="Left" Height="56" Margin="33,457,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="353"/>
 
     </Grid>
 </Page>

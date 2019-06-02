@@ -119,12 +119,32 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="clsUtil.cs" />
     <Compile Include="DTO.cs" />
+    <Compile Include="IWorkControl.cs" />
+    <Compile Include="pgArtist.xaml.cs">
+      <DependentUpon>pgArtist.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pgMain.xaml.cs">
       <DependentUpon>pgMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pgWork.xaml.cs">
+      <DependentUpon>pgWork.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceClient.cs" />
+    <Compile Include="ucArtworkChoices.xaml.cs">
+      <DependentUpon>ucArtworkChoices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucPainting.xaml.cs">
+      <DependentUpon>ucPainting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucPhoto.xaml.cs">
+      <DependentUpon>ucPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucSculpture.xaml.cs">
+      <DependentUpon>ucSculpture.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -147,9 +167,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="mockBrandBikes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mockMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mockMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mockOrderBike.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pgArtist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pgMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pgWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucArtworkChoices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucPainting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucPhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucSculpture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

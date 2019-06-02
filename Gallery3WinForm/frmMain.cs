@@ -114,7 +114,7 @@ namespace Gallery3WinForm
             if (lcKey != null && MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 lstArtists.ClearSelected();
-                MessageBox.Show(await ServiceClient.DeleteArtist(lcKey));
+                MessageBox.Show(await ServiceClient.DeleteArtistAsync(lcKey));
                 frmMain.Instance.UpdateDisplay();
             }
         }

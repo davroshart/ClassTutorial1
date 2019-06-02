@@ -177,9 +177,8 @@ namespace Gallery3SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute("UPDATE Work " +
-                "SET (Name, Date, Value, Width, Height, Type, Weight, Material) " +
-                "VALUES (@Name, @Date, @Value, @Width, @Height, @Type, @Weight, @Material) " +
-                "WHERE (Name = @Name)",
+                "SET Date = @Date, Value = @Value, Width = @Width, Height = @Height, Type = @Type, Weight = @Weight, Material = @Material " +
+                "WHERE Name = @Name AND ArtistName = @ArtistName",
                 prepareWorkParameters(prWork));
                 if (lcRecCount == 1)
                     return "One artwork updated";
